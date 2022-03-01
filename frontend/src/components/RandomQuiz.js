@@ -39,6 +39,7 @@ const useStyles = makeStyles((theme) => ({
 const RandomQuiz = () => {
     const classes = useStyles();
     const {topic} = useParams()
+    console.log({topic})
     const API_URL = "/quiz/r/" + topic
     const [dataState] = ConnectApi(API_URL)
     const answerList = dataState.flatMap((q) => q.answer);
