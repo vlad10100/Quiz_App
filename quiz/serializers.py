@@ -41,8 +41,6 @@ class RandomQuestionSerializer(serializers.ModelSerializer):
 
 class QuestionSerializer(serializers.ModelSerializer):
     answer = AnswerSerializer(many=True, read_only=True)
-    quiz = QuizSerializer(read_only=True)
-
     class Meta:
         model = Questions
-        fields = ['quiz','title','answer'] # answer -->> related_name
+        fields = ['title','answer'] # answer -->> related_name

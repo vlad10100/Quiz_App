@@ -9,6 +9,8 @@ from quiz.models import Quizzes, Questions, Category, Answer
 
 
 class QuizStart(APIView):
+    serializer_class = CategorySerializer
+
     # display all quiz categories
     def get(self, request, format=None):        
         category_list = Category.objects.all()
@@ -25,6 +27,7 @@ class QuizStart(APIView):
 
 
 class Quiz(APIView):
+    serializer_class = QuizSerializer
 
     # display quizzes
     def get(self, request, format=None):
@@ -44,6 +47,8 @@ class Quiz(APIView):
     
 
 class RandomQuestion(APIView):
+    serializer_class = RandomQuestionSerializer
+
     def get(self, request, format=None, **kwargs):
         question = Questions.objects.filter(quiz__title=kwargs['topic']).order_by('?')[:1] # 1 RANDON at a time
         serializer = RandomQuestionSerializer(question, many=True)
